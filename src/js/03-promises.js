@@ -11,7 +11,7 @@ function handleSubmit(event) {
   let countDelay = Number(delay.value);
 
   for (let i = 1; i <= amount.value; i += 1) {
-    createPromise(i, delay_count)
+    createPromise(i, countDelay)
       .then(({ position, delay }) => {
         Notiflix.Notify.success(
           `✅ Fulfilled promise ${position} in ${delay}ms`
@@ -30,10 +30,10 @@ function handleSubmit(event) {
 
 function createPromise(position, delay) {
   return new Promise((resolve, reject) => {
-    const resolvePromise = Math.random() > 0.3;
+    const shouldResolve = Math.random() > 0.3;
 
     setTimeout(() => {
-      if (resolvePromise) {
+      if (shouldResolve) {
         resolve({ position, delay });
       } else {
         reject({ position, delay });
